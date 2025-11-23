@@ -1,0 +1,160 @@
+﻿<Window
+    x:Class="NewTechnology.Views.PartnerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding WindowTitle}"
+    Width="600"
+    Height="500"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Margin="0,0,0,20"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            FontWeight="Bold"
+            Text="{Binding WindowTitle}" />
+
+        <!--  Тип партнера  -->
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="0,0,10,10"
+            VerticalAlignment="Center"
+            Text="Тип партнера:" />
+        <ComboBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding PartnerTypes}"
+            SelectedItem="{Binding CurrentPartner.TypePartners}" />
+
+        <!--  Наименование  -->
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="0,0,10,10"
+            VerticalAlignment="Center"
+            Text="Наименование:" />
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            Text="{Binding CurrentPartner.Name, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--  ФИО директора  -->
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Margin="0,0,10,10"
+            VerticalAlignment="Center"
+            Text="ФИО директора:" />
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            Text="{Binding CurrentPartner.FIODirector, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--  Адрес  -->
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="0"
+            Margin="0,0,10,10"
+            VerticalAlignment="Center"
+            Text="Адрес:" />
+        <TextBox
+            Grid.Row="4"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            Text="{Binding CurrentPartner.Address, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--  Рейтинг  -->
+        <TextBlock
+            Grid.Row="5"
+            Grid.Column="0"
+            Margin="0,0,10,10"
+            VerticalAlignment="Center"
+            Text="Рейтинг:" />
+        <TextBox
+            Grid.Row="5"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            Text="{Binding CurrentPartner.Rating, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.InputBindings>
+                <KeyBinding
+                    Key="V"
+                    Command="ApplicationCommands.Paste"
+                    Modifiers="Ctrl" />
+            </TextBox.InputBindings>
+        </TextBox>
+
+        <!--  Телефон  -->
+        <TextBlock
+            Grid.Row="6"
+            Grid.Column="0"
+            Margin="0,0,10,10"
+            VerticalAlignment="Center"
+            Text="Телефон:" />
+        <TextBox
+            Grid.Row="6"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            Text="{Binding CurrentPartner.Number, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--  Email  -->
+        <TextBlock
+            Grid.Row="7"
+            Grid.Column="0"
+            Margin="0,0,10,10"
+            VerticalAlignment="Center"
+            Text="Email:" />
+        <TextBox
+            Grid.Row="7"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            Text="{Binding CurrentPartner.Email, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!--  Кнопки  -->
+        <StackPanel
+            Grid.Row="9"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Width="80"
+                Height="30"
+                Margin="0,0,10,0"
+                Background="LightGreen"
+                Command="{Binding SaveCommand}"
+                Content="Сохранить" />
+            <Button
+                Width="80"
+                Height="30"
+                Command="{Binding CancelCommand}"
+                Content="Отмена" />
+        </StackPanel>
+    </Grid>
+</Window>

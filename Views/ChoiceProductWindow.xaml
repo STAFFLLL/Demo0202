@@ -1,0 +1,95 @@
+﻿<Window
+    x:Class="NewTechnology.Views.ChoiceProductWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Выбор продукта"
+    Width="700"
+    Height="450"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            FontSize="18"
+            FontWeight="Bold"
+            Text="Выбор продукта для заявки" />
+
+        <DataGrid
+            Grid.Row="1"
+            Margin="0,10,0,10"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            ItemsSource="{Binding AllProducts}"
+            SelectedItem="{Binding SelectedProduct}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="3*"
+                    Binding="{Binding Name}"
+                    Header="Название" />
+                <DataGridTextColumn
+                    Width="2*"
+                    Binding="{Binding TypeProducts.Name}"
+                    Header="Тип" />
+                <DataGridTextColumn
+                    Width="2*"
+                    Binding="{Binding MinPriceForPartner, StringFormat={}{0:N2}}"
+                    Header="Минимальная цена" />
+                <DataGridTextColumn
+                    Width="3*"
+                    Binding="{Binding Description}"
+                    Header="Описание" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,0,0,10"
+            Orientation="Horizontal">
+            <TextBlock
+                Margin="0,0,10,0"
+                VerticalAlignment="Center"
+                Text="Количество:" />
+            <TextBox
+                Width="60"
+                Margin="0,0,20,0"
+                Text="{Binding Quantity}" />
+            <TextBlock
+                Margin="0,0,10,0"
+                VerticalAlignment="Center"
+                Text="Минимальная цена для партнера:" />
+            <TextBlock
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                Foreground="Green"
+                Text="{Binding SelectedProduct.MinPriceForPartner, StringFormat={}{0:N2} руб.}" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="3"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Width="80"
+                Height="30"
+                Margin="0,0,10,0"
+                Background="LightBlue"
+                Command="{Binding AddProductCommand}"
+                Content="Добавить" />
+            <Button
+                Width="80"
+                Height="30"
+                Click="CancelButton_Click"
+                Content="Отмена" />
+        </StackPanel>
+    </Grid>
+</Window>
